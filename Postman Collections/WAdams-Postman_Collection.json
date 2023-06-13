@@ -28,7 +28,7 @@
 					}
 				}
 			],
-			"_postman_id": "e375023d-ac0a-4f55-ade6-bdc9bb569dac",
+			"id": "e375023d-ac0a-4f55-ade6-bdc9bb569dac",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -70,7 +70,7 @@
 					}
 				}
 			],
-			"_postman_id": "f7691fbb-cb02-4a8d-8862-c13f19e5f9ca",
+			"id": "f7691fbb-cb02-4a8d-8862-c13f19e5f9ca",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true,
 				"disabledSystemHeaders": {}
@@ -80,10 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"collection\": {\r\n        \"info\": {\r\n            \"name\": \"Test Collection\",\r\n            \"description\": \"This is a new Test collection\",\r\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\r\n        },\r\n        \"item\": []\r\n    }\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"collection\": {\r\n        \"info\": {\r\n            \"name\": \"Test Collection\",\r\n            \"description\": \"This is a new Test collection\",\r\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\r\n        },\r\n        \"item\": []\r\n    }\r\n}"
 				},
 				"url": "https://api.getpostman.com/collections"
 			},
@@ -118,7 +115,7 @@
 					}
 				}
 			],
-			"_postman_id": "001c2ee8-9840-4083-89ba-b3ef3f5052cd",
+			"id": "001c2ee8-9840-4083-89ba-b3ef3f5052cd",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -151,7 +148,7 @@
 					}
 				}
 			],
-			"_postman_id": "c93f2f6a-2134-4540-84c9-09eba1d47d33",
+			"id": "c93f2f6a-2134-4540-84c9-09eba1d47d33",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -160,10 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"collection\": {\r\n        \"info\": {\r\n            \"name\": \"Updated Collection\",\r\n            \"description\": \"This is an updated collection\",\r\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\r\n        },\r\n        \"item\": []\r\n    }\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"collection\": {\r\n        \"info\": {\r\n            \"name\": \"Updated Collection\",\r\n            \"description\": \"This is an updated collection\",\r\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\r\n        },\r\n        \"item\": []\r\n    }\r\n}"
 				},
 				"url": "https://api.getpostman.com/collections/{{COLLECTION_ID}}"
 			},
@@ -177,15 +171,25 @@
 					"script": {
 						"id": "ffa7d61a-91f3-4078-a437-07628f7d0120",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Delete Collection\", function () {\r",
+							"  pm.sendRequest({\r",
+							"    url: \"https://api.getpostman.com/collections/{{collectionId}}\",\r",
+							"    method: \"DELETE\",\r",
+							"    header: {\r",
+							"      \"X-API-Key\": \"YOUR_API_KEY\"\r",
+							"    }\r",
+							"  }, function (err, response) {\r",
+							"    pm.expect(err).to.be.null;\r",
+							"    pm.expect(response).to.have.property(\"code\", 200);\r",
+							"    pm.expect(response.json().collection).to.deep.equal({});\r",
+							"  });\r",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
-			"_postman_id": "19a47dea-84e6-49fd-8bd1-0263cfc4686e",
+			"id": "19a47dea-84e6-49fd-8bd1-0263cfc4686e",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
